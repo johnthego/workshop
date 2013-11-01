@@ -11,7 +11,14 @@ var HomeView = function(store) {
 			store.findByName($('.search-key').val(), function(employees) {
 				$('.employee-list').html(HomeView.liTemplate(employees));
 			});
-		};
+			if(self.iscroll)
+			{
+				self.iscroll.refresh();
+			}else{
+				self.iscroll = new iScroll($('.scroll', self.el)[0], {hScrollbar: false, vScrollbar: false });
+			}
+			};
+
 
     this.initialize = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
