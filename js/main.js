@@ -1,5 +1,13 @@
 var app = {
 
+
+	showAlert: function (message, title) {
+		if (navigator.notification) {
+			navigator.notification.alert(message, null, title, 'OK');
+		} else {
+			alert(title ? (title + ": " + message) : message);
+		}
+	},
 	registerEvents: function() {
     var self = this;
     // Check of browser supports touch events...
@@ -16,7 +24,6 @@ var app = {
 },
 	route: function() {
     var hash = window.location.hash;
-    console.log("window.location.hash ["+ window.location.hash+"]");	
     if (!hash) {
     	
         $('body').html(new HomeView(this.store).render().el);
